@@ -46,4 +46,12 @@ get_entity_node()
 }
 
 
+Nil::Node
+get_debug_line_node()
+{
+  static Nil::Node node;
+  return node;
+}
+
+
 } // ns

@@ -15,9 +15,16 @@ public:
   explicit        Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 
   uint8_t         get_red() const;
+  float           get_red_f() const;
+  
   uint8_t         get_green() const;
+  float           get_green_f() const;
+  
   uint8_t         get_blue() const;
+  float           get_blue_f() const;
+  
   uint8_t         get_alpha() const;
+  float           get_alpha_f() const;
 
 private:
 

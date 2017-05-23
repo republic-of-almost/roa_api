@@ -11,6 +11,9 @@ public:
 
   explicit      Vector3(float x, float y, float z);
   
+  float         x() const;
+  float         y() const;
+  float         z() const;
   
 private:
 
