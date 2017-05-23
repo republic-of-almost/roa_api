@@ -10,12 +10,13 @@ namespace Type {
 
 
 constexpr uint32_t Application_ID    = 1;
-constexpr uint32_t Entity_ID         = 2;
-constexpr uint32_t Keyboard_ID       = 3;
-constexpr uint32_t Material_ID       = 4;
-constexpr uint32_t Mouse_ID          = 5;
+constexpr uint32_t Camera_ID         = 2;
+constexpr uint32_t Entity_ID         = 3;
+constexpr uint32_t Keyboard_ID       = 4;
+constexpr uint32_t Material_ID       = 5;
+constexpr uint32_t Mouse_ID          = 6;
 constexpr uint32_t Object_ID         = 0;
-constexpr uint32_t Transform_ID      = 6;
+constexpr uint32_t Transform_ID      = 7;
 
 
 } // ns

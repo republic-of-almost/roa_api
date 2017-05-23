@@ -16,7 +16,9 @@ public:
 
   explicit              Keyboard(const uint32_t which);
   
+  
   // ----------------------------------------------------------- [ Settings ] --
+
 
   bool                  is_key_down(uint32_t key_id) const;
   bool                  is_key_down_on_frame(uint32_t key_id) const;
@@ -28,7 +30,9 @@ public:
   
   static const char *   get_key_name(uint32_t key_id);
 
+
   // ---------------------------------------------------------- [ Inherited ] --
+  
   
   uint32_t              get_type_id() const override;
   const char*           get_type_name() const override;

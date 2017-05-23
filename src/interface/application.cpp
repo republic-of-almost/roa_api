@@ -19,6 +19,7 @@ constexpr char app_input_node_name[]  = "roa-input";
 constexpr char app_mice_node_name[]   = "roa-mice";
 constexpr char app_kb_node_name[]     = "roa-kbs";
 constexpr char app_gp_node_name[]     = "roa-gps";
+constexpr char app_ents_node_name[]   = "roa-ents";
 constexpr char app_type_name[]        = "Application";
 
 
@@ -30,7 +31,7 @@ namespace ROA {
 
 
 Application::Application()
-: Object()
+: Object(nullptr)
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
@@ -58,6 +59,8 @@ Application::Application()
     
     ROA_detail::get_gamepads_node().set_parent(input_node);
     ROA_detail::get_gamepads_node().set_name(app_gp_node_name);
+    
+    ROA_detail::get_entity_node().set_name(app_ents_node_name);
   }
   else
   {

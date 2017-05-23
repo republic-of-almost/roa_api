@@ -24,6 +24,10 @@ Nil::Node
 get_gamepads_node();
 
 
+Nil::Node
+get_entity_node();
+
+
 } // ns
 
 

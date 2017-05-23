@@ -22,9 +22,8 @@ namespace ROA {
 
 
 Transform::Transform(Object obj)
-: Object()
+: Object(obj.get_instance())
 {
-  set_instance_id(obj.get_instance());
 }
 
 

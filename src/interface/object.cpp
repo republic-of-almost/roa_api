@@ -1,12 +1,15 @@
 #include <roa/object.hpp>
+#include <roa/entity.hpp>
+#include <data/data.hpp>
 #include <roa/foundation/type_ids.hpp>
 #include <nil/node.hpp>
 
 
 namespace {
 
-constexpr char object_type_name[] = "Unknown";
+constexpr char object_type_name[]        = "Unknown";
 constexpr char object_no_instance_name[] = "Invalid Object";
+constexpr char object_name[]             = "roa-ent";
 
 }
 
@@ -14,15 +17,32 @@ constexpr char object_no_instance_name[] = "Invalid Object";
 namespace ROA {
 
 
-Object::Object()
-: m_instance_id(0)
+Object::Object(uint32_t instance_id)
 {
+  set_instance_id(instance_id);
+}
+
+
+Object::Object(nullptr_t)
+: Object(uint32_t{0})
+{
+}
+
+
+Object::Object()
+{
+  Nil::Node node;
+  node.set_name(object_name);
+  node.set_parent(ROA_detail::get_entity_node());
+  
+  set_instance_id(node.get_id());
 }
 
 
 Object::~Object()
 {
-  
+  Nil::Node node(m_instance_id);
+  node.destroy();
 }
 
 
@@ -87,6 +107,13 @@ Object::is_valid() const
   }
   
   return false;
+}
+
+
+Entity
+Object::get_entity() const
+{
+  return Entity(*this);
 }
 
 

@@ -8,7 +8,7 @@
 namespace ROA {
 
 
-class Color
+class Color final
 {
 public:
 

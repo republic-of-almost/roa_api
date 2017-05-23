@@ -14,18 +14,30 @@ class Entity : public Object
 {
 private:
 
-  explicit        Entity(const uint32_t instance_id);
+  friend class Object;
+
+  explicit        Entity(Object object);
+
 
 public:
 
+
+  explicit        Entity();
+  
+  
+  // --------------------------------------------------------------- [ Data ] --
+  
+
   Transform       get_transform() const;
+  Camera          get_camera() const;
   
   
   // ---------------------------------------------------------- [ Inherited ] --
   
-  uint32_t      get_type_id() const override;
-  const char*   get_type_name() const override;
-  const char*   get_instance_name() const override;
+  
+  uint32_t        get_type_id() const override;
+  const char*     get_type_name() const override;
+  const char*     get_instance_name() const override;
 
 };
 

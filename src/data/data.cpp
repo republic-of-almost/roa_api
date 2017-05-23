@@ -38,4 +38,12 @@ get_gamepads_node()
 }
 
 
+Nil::Node
+get_entity_node()
+{
+  static Nil::Node node;
+  return node;
+}
+
+
 } // ns

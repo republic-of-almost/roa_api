@@ -22,7 +22,7 @@ namespace ROA {
 
 
 Keyboard::Keyboard(const uint32_t which)
-: Object()
+: Object(nullptr)
 {
   Nil::Node input_node = ROA_detail::get_keyboards_node();
   
