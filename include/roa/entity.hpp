@@ -25,11 +25,30 @@ public:
   explicit        Entity();
   
   
+  // ------------------------------------------------------------ [ General ] --
+  
+  
+  const char*     get_name() const;
+  void            set_name(const char *new_name);
+  
+  void            set_parent(Entity entity);
+  void            set_parent(nullptr_t entity);
+  
+  size_t          child_count() const;
+  Entity          get_child(const size_t child);
+  
+  
   // --------------------------------------------------------------- [ Data ] --
   
 
   Transform       get_transform() const;
+  void            set_transform(const Transform other);
+  
   Camera          get_camera() const;
+  void            set_camera(const Camera other);
+  
+  Material        get_material() const;
+  void            set_material(const Material mat);
   
   
   // ---------------------------------------------------------- [ Inherited ] --

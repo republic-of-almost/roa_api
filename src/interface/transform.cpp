@@ -21,8 +21,8 @@ constexpr char transform_type_name[] = "Transform";
 namespace ROA {
 
 
-Transform::Transform(Object obj)
-: Object(obj.get_instance())
+Transform::Transform(uint32_t instance_id)
+: Object(instance_id)
 {
 }
 
@@ -56,6 +56,17 @@ Transform::get_position() const
 void
 Transform::set_position(Vector3 pos)
 {
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Transform data{};
+  Nil::Data::get(node, data);
+  
+  data.position[0] = pos.x();
+  data.position[1] = pos.y();
+  data.position[2] = pos.z();
+  
+  Nil::Data::set(node, data);
 }
 
 
@@ -79,6 +90,17 @@ Transform::get_scale() const
 void
 Transform::set_scale(Vector3 scale)
 {
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Transform data{};
+  Nil::Data::get(node, data);
+  
+  data.scale[0] = scale.x();
+  data.scale[1] = scale.y();
+  data.scale[2] = scale.z();
+  
+  Nil::Data::set(node, data);
 }
 
 
@@ -103,6 +125,18 @@ Transform::get_rotation() const
 void
 Transform::set_rotation(Quaternion quat)
 {
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Transform data{};
+  Nil::Data::get(node, data);
+  
+  data.rotation[0] = quat.x();
+  data.rotation[1] = quat.y();
+  data.rotation[2] = quat.z();
+  data.rotation[3] = quat.w();
+  
+  Nil::Data::set(node, data);
 }
 
 

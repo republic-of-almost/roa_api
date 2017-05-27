@@ -7,10 +7,10 @@
 table.insert(
   projects,
   {
-    name     = "ROA",
-    kind     = "StaticLib",
-    language = "C++",
-    location = make.get_proj_root(),
+    name      = "ROA",
+    kind      = "StaticLib",
+    language  = "C++",
+    location  = make.get_proj_root(),
 
     src_files = {
       make.add_headers(make.get_proj_root()),

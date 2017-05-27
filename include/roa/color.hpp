@@ -12,7 +12,8 @@ class Color final
 {
 public:
 
-  explicit        Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
+  explicit        Color();
+  explicit        Color(float red, float green, float blue, float alpha);
 
   uint8_t         get_red() const;
   float           get_red_f() const;

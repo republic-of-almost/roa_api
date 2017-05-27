@@ -31,4 +31,25 @@ Vector3::z() const
 }
 
 
+void
+Vector3::set_x(float x)
+{
+  m_data[0] = x;
+}
+
+
+void
+Vector3::set_y(float y)
+{
+  m_data[1] = y;
+}
+
+
+void
+Vector3::set_z(float z)
+{
+  m_data[2] = z;
+}
+
+
 } // ns

@@ -14,15 +14,17 @@ class Transform : public Object
 {
 private:
 
-  friend class Entity;
+  friend class    Entity;
 
-  explicit        Transform(Object obj);
+  explicit        Transform(uint32_t instance_id);
 
 public:
 
   explicit        Transform();
   
+  
   // ----------------------------------------------------------- [ Settings ] --
+  
   
   Vector3         get_position() const;
   void            set_position(Vector3 pos);
@@ -41,7 +43,9 @@ public:
   static Vector3  get_world_up();
   static Vector3  get_world_left();
   
+  
   // ---------------------------------------------------------- [ Inherited ] --
+  
   
   uint32_t        get_type_id() const override;
   const char*     get_type_name() const override;

@@ -9,6 +9,7 @@ class Application;
 class Camera;
 class Color;
 class Entity;
+class Material;
 class Mouse;
 class Object;
 struct Point;

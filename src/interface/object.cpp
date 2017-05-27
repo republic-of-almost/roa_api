@@ -17,8 +17,12 @@ constexpr char object_name[]             = "roa-ent";
 namespace ROA {
 
 
-Object::Object(uint32_t instance_id)
+// ---------------------------------------------------------- [ Protected ] --
+
+
+Object::Object(uint32_t instance_id, bool owning)
 {
+  m_owning = owning;
   set_instance_id(instance_id);
 }
 
@@ -35,14 +39,26 @@ Object::Object()
   node.set_name(object_name);
   node.set_parent(ROA_detail::get_entity_node());
   
+  m_owning = true;
+  
   set_instance_id(node.get_id());
 }
 
 
-Object::~Object()
+Object::Object(const Object &obj)
+: m_instance_id(obj.m_instance_id)
+, m_owning(obj.m_owning)
 {
-  Nil::Node node(m_instance_id);
-  node.destroy();
+}
+
+
+Object&
+Object::operator=(const Object &obj)
+{
+  m_instance_id = obj.m_instance_id;
+  m_owning = obj.m_owning;
+  
+  return *this;
 }
 
 
@@ -53,30 +69,16 @@ Object::set_instance_id(const uint32_t id)
 }
 
 
-uint32_t
-Object::get_type_id() const
+// ------------------------------------------------------------- [ Lifetime ] --
+
+
+Object::~Object()
 {
-  return ROA::Type::Object_ID;
-}
-
-
-const char*
-Object::get_type_name() const
-{
-  return object_type_name;
-}
-
-
-const char*
-Object::get_instance_name() const
-{
-  if(get_instance())
+  if(m_owning)
   {
-    Nil::Node node(get_instance());
-    return node.get_name();
+    Nil::Node node(m_instance_id);
+    node.destroy();
   }
-
-  return object_no_instance_name;
 }
 
 
@@ -88,13 +90,6 @@ Object::destroy()
     Nil::Node node(m_instance_id);
     node.destroy();
   }
-}
-
-
-uint32_t
-Object::get_instance() const
-{
-  return m_instance_id;
 }
 
 
@@ -114,6 +109,46 @@ Entity
 Object::get_entity() const
 {
   return Entity(*this);
+}
+
+
+// ------------------------------------------------------------ [ Type info ] --
+
+
+uint32_t
+Object::get_type_id() const
+{
+  return ROA::Type::Object_ID;
+}
+
+
+const char*
+Object::get_type_name() const
+{
+  return object_type_name;
+}
+
+
+// -------------------------------------------------------- [ Instance info ] --
+
+
+const char*
+Object::get_instance_name() const
+{
+  if(get_instance())
+  {
+    Nil::Node node(get_instance());
+    return node.get_name();
+  }
+
+  return object_no_instance_name;
+}
+
+
+uint32_t
+Object::get_instance() const
+{
+  return m_instance_id;
 }
 
 

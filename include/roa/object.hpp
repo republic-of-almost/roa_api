@@ -13,29 +13,50 @@ class Object
 {
 protected:
 
-  explicit              Object(uint32_t instance_id);
+
+  // ---------------------------------------------------------- [ Protected ] --
+  
+
+  explicit              Object(uint32_t instance_id, bool owning = false);
   explicit              Object(nullptr_t);
   explicit              Object();
+  
+                        Object(const Object &obj);
+  Object&               operator=(const Object &obj);
 
   void                  set_instance_id(const uint32_t id);
 
+
 public:
 
+
+  // ----------------------------------------------------------- [ Lifetime ] --
+
+
   virtual               ~Object();
+  void                  destroy();
+  bool                  is_valid() const;
+  Entity                get_entity() const;
+
+  
+  // ---------------------------------------------------------- [ Type info ] --
+
 
   virtual uint32_t      get_type_id() const;
   virtual const char*   get_type_name() const;
-  virtual const char*   get_instance_name() const;
-
-  void                  destroy();
-  uint32_t              get_instance() const;
-  bool                  is_valid() const;
   
-  Entity                get_entity() const;
+  
+  // ------------------------------------------------------ [ Instance info ] --
+  
+  
+  virtual const char*   get_instance_name() const;
+  uint32_t              get_instance() const;
+
 
 private:
 
   uint32_t              m_instance_id;
+  bool                  m_owning;
 
 };
 

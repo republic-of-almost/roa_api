@@ -5,10 +5,26 @@
 namespace ROA {
 
 
-Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
+Color::Color()
+: Color(1.f, 1.f, 1.f, 1.f)
+{
+}
+
+
+Color::Color(float red, float green, float blue, float alpha)
 {
   m_color = lib::color::init(red, green, blue, alpha);
 }
+
+
+//Color::Color(float red, float green, float blue, float alpha)
+//: Color(
+//  (uint8_t)(red * 255),
+//  (uint8_t)(green * 255),
+//  (uint8_t)(blue * 255),
+//  (uint8_t)(alpha * 255))
+//{
+//}
 
 
 uint8_t

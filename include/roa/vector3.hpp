@@ -9,11 +9,15 @@ class Vector3
 {
 public:
 
-  explicit      Vector3(float x, float y, float z);
+  explicit      Vector3(float x = 0, float y = 0, float z = 0);
   
   float         x() const;
   float         y() const;
   float         z() const;
+  
+  void          set_x(float x);
+  void          set_y(float y);
+  void          set_z(float z);
   
 private:
 

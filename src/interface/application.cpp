@@ -98,7 +98,10 @@ Application::get_title() const
     Nil::Data::get(ctx_node, win_data);
     
     static char title[32];
-    memcpy(title, win_data.title, math::min(sizeof(title), sizeof(win_data.title)));
+    const size_t data_size = sizeof(Nil::Data::Window::title);
+    const size_t title_size = sizeof(title);
+    
+    memcpy(title, win_data.title, math::min(title_size, data_size));
     
     return title;
   }
@@ -119,7 +122,10 @@ Application::set_title(const char *title)
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
     
-    memcpy(win_data.title, title, math::min(sizeof(title), sizeof(win_data.title)));
+    const size_t title_size = strlen(title) * sizeof(title);
+    const size_t data_size = sizeof(Nil::Data::Window::title);
+    
+    memcpy(win_data.title, title, math::min(title_size, data_size));
     
     Nil::Data::set(ctx_node, win_data);
     

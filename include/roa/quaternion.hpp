@@ -9,7 +9,16 @@ class Quaternion
 {
 public:
 
-  explicit Quaternion(float x, float y, float z, float w);
+  explicit  Quaternion(float x, float y, float z, float w);
+
+  float     x() const;
+  float     y() const;
+  float     z() const;
+  float     w() const;
+  
+private:
+
+  float     m_data[4];
 
 };
 
