@@ -10,6 +10,11 @@
 namespace ROA {
 
 
+constexpr uint32_t ShaderID_fullbright        = 0;
+constexpr uint32_t ShaderID_light             = 1;
+constexpr uint32_t ShaderID_directionalLight  = 2;
+
+
 class Material : public Object
 {
 private:
@@ -28,6 +33,10 @@ public:
   
   Color             get_color() const;
   void              set_color(Color color);
+  
+  
+  uint32_t          get_shader_type() const;
+  void              set_shader_type(uint32_t id);
   
 
   // ---------------------------------------------------------- [ Inherited ] --

@@ -7,11 +7,20 @@
 #include <utilities/assert.hpp>
 
 
+namespace {
+
+
+constexpr char camera_type_name[] = "Camera";
+
+
+} // anon ns
+
+
 namespace ROA {
 
 
-Camera::Camera(Object obj)
-: Object(obj.get_instance())
+Camera::Camera(uint32_t obj)
+: Object(obj)
 {
   
 }
@@ -106,7 +115,7 @@ Camera::get_width() const
 
 
 void
-Camera::get_height(float height)
+Camera::set_height(float height)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
@@ -269,8 +278,26 @@ Camera::get_clear_color() const
 }
 
 
+bool
+Camera::get_clear_color_buffer() const
+{
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  if(Nil::Data::has_camera(node))
+  {
+    Nil::Data::Camera data{};
+    Nil::Data::get(node, data);
+
+    return data.clear_color_buffer;
+  }
+  
+  return false;
+}
+
+
 void
-Camera::clear_color_buffer(bool set)
+Camera::set_clear_color_buffer(bool set)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
@@ -287,8 +314,26 @@ Camera::clear_color_buffer(bool set)
 }
 
 
+bool
+Camera::get_clear_depth_buffer() const
+{
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  if(Nil::Data::has_camera(node))
+  {
+    Nil::Data::Camera data{};
+    Nil::Data::get(node, data);
+
+    return data.clear_depth_buffer;
+  }
+  
+  return false;
+}
+
+
 void
-Camera::clear_depth_buffer(bool set)
+Camera::set_clear_depth_buffer(bool set)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
@@ -318,14 +363,14 @@ Camera::get_type_id() const
 const char*
 Camera::get_type_name() const
 {
-  return "Camera";
+  return camera_type_name;
 }
 
 
 const char*
 Camera::get_instance_name() const
 {
-  Object::get_instance_name();
+  return Object::get_instance_name();
 }
 
 

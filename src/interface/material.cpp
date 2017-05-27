@@ -73,6 +73,34 @@ Material::set_color(Color col)
 }
 
 
+uint32_t
+Material::get_shader_type() const
+{
+  const Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Material data{};
+  Nil::Data::get(node, data);
+  
+  return data.shader;
+}
+
+
+void
+Material::set_shader_type(uint32_t id)
+{
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Material data{};
+  Nil::Data::get(node, data);
+  
+  data.shader = id;
+  
+  Nil::Data::set(node, data);
+}
+
+
 // ------------------------------------------------------------ [ Inherited ] --
   
   

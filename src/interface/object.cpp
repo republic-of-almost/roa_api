@@ -47,7 +47,7 @@ Object::Object()
 
 Object::Object(const Object &obj)
 : m_instance_id(obj.m_instance_id)
-, m_owning(obj.m_owning)
+, m_owning(false)
 {
 }
 
@@ -56,16 +56,23 @@ Object&
 Object::operator=(const Object &obj)
 {
   m_instance_id = obj.m_instance_id;
-  m_owning = obj.m_owning;
+  m_owning = false;
   
   return *this;
 }
 
 
 void
-Object::set_instance_id(const uint32_t id)
+Object::set_instance_id(uint32_t id)
 {
   m_instance_id = id;
+}
+
+
+void
+Object::set_ownership(bool ownership)
+{
+  m_owning = ownership;
 }
 
 
@@ -108,7 +115,7 @@ Object::is_valid() const
 Entity
 Object::get_entity() const
 {
-  return Entity(*this);
+  return Entity(get_instance());
 }
 
 

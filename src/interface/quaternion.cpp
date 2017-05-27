@@ -1,4 +1,6 @@
 #include <roa/quaternion.hpp>
+#include <roa/vector3.hpp>
+#include <math/quat/quat.hpp>
 
 
 namespace ROA {
@@ -35,6 +37,25 @@ float
 Quaternion::w() const
 {
   return m_data[3];
+}
+
+
+/* static */ Quaternion
+Quaternion::from_axis_angle(Vector3 axis, float angle)
+{
+  const math::quat rot = math::quat_init_with_axis_angle(
+    axis.x(),
+    axis.y(),
+    axis.z(),
+    angle
+  );
+  
+  return Quaternion(
+    math::quat_get_x(rot),
+    math::quat_get_y(rot),
+    math::quat_get_z(rot),
+    math::quat_get_w(rot)
+  );
 }
 
 

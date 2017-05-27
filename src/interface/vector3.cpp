@@ -1,4 +1,23 @@
 #include <roa/vector3.hpp>
+#include <math/vec/vec3.hpp>
+
+
+namespace {
+
+inline ROA::Vector3
+from_math(math::vec3 vec)
+{
+  return ROA::Vector3(math::get_x(vec), math::get_y(vec), math::get_z(vec));
+}
+
+
+inline math::vec3
+to_math(ROA::Vector3 vec)
+{
+  return math::vec3_init(vec.x(), vec.y(), vec.z());
+}
+
+}
 
 
 namespace ROA {
@@ -49,6 +68,48 @@ void
 Vector3::set_z(float z)
 {
   m_data[2] = z;
+}
+
+
+Vector3
+Vector3::add(Vector3 other) const
+{
+  return from_math(
+    math::vec3_add(
+      to_math(*this),
+      to_math(other)
+    )
+  );
+}
+
+
+Vector3
+Vector3::normalize() const
+{
+  return from_math(
+    math::vec3_normalize(
+      to_math(*this)
+    )
+  );
+}
+
+
+Vector3
+Vector3::scale(float scale) const
+{
+  return from_math(
+    math::vec3_scale(
+      to_math(*this),
+      scale
+    )
+  );
+}
+
+
+float
+Vector3::length() const
+{
+  return math::vec3_length(to_math(*this));
 }
 
 

@@ -20,10 +20,10 @@ constexpr char entity_type_name[] = "Entity";
 namespace ROA {
 
 
-Entity::Entity(Object object)
-: Object(object.get_instance())
+Entity::Entity(uint32_t object)
+: Object(object)
 {
-  set_instance_id(object.get_instance());
+  set_instance_id(get_instance());
 }
 
 
@@ -59,6 +59,55 @@ Entity::set_name(const char *name)
 }
 
 
+void
+Entity::set_parent(Entity entity)
+{
+  Nil::Node node(get_instance());
+  const Nil::Node parent(entity.get_instance());
+  
+  node.set_parent(parent);
+  
+  set_ownership(false);
+}
+
+//
+//void
+//Entity::set_parent(nullptr_t entity)
+//{
+//  Nil::Node node(get_instance());
+//  const Nil::Node no_parent(nullptr);
+//  
+//  node.set_parent(no_parent);
+//}
+
+
+Entity
+Entity::get_parent() const
+{
+  const Nil::Node node(get_instance());
+  const Nil::Node parent = node.get_parent();
+  
+  return Entity(parent.get_id());
+}
+
+
+size_t
+Entity::child_count() const
+{
+  const Nil::Node node(get_instance());
+  return node.get_child_count();
+}
+
+
+Entity
+Entity::get_child(const size_t child)
+{
+  const Nil::Node node(get_instance());
+  const Nil::Node child_node = node.get_child(child);
+  
+  return Entity(get_instance());
+}
+
 
 // ----------------------------------------------------------------- [ Data ] --
 
@@ -85,8 +134,19 @@ Entity::set_transform(const Transform other)
 Camera
 Entity::get_camera() const
 {
-//  return Camera(*this);
-  return Camera();
+  return Camera(this->get_instance());
+}
+
+
+void
+Entity::set_camera(const Camera other)
+{
+  const Nil::Node other_node(other.get_instance());
+  Nil::Data::Camera other_data{};
+  Nil::Data::get(other_node, other_data);
+  
+  Nil::Node node(get_instance());
+  Nil::Data::set(node, other_data);
 }
 
 

@@ -6,6 +6,9 @@
 #include <nil/data/transform.hpp>
 #include <utilities/logging.hpp>
 #include <utilities/assert.hpp>
+#include "helpers/math_extensions.hpp"
+#include <math/quat/quat.hpp>
+#include <math/vec/vec3.hpp>
 
 
 
@@ -143,18 +146,36 @@ Transform::set_rotation(Quaternion quat)
 Vector3
 Transform::get_forward() const
 {
+  const math::quat rot = ROA_detail::quat_init(get_rotation());
+  const math::vec3 fwd = ROA_detail::vec3_init(get_world_forward());
+  
+  return ROA_detail::vec3_to_roa(
+    math::quat_rotate_point(rot, fwd)
+  );
 }
 
 
 Vector3
 Transform::get_up() const
 {
+  const math::quat rot = ROA_detail::quat_init(get_rotation());
+  const math::vec3 up = ROA_detail::vec3_init(get_world_up());
+  
+  return ROA_detail::vec3_to_roa(
+    math::quat_rotate_point(rot, up)
+  );
 }
 
 
 Vector3
 Transform::get_left() const
 {
+  const math::quat rot = ROA_detail::quat_init(get_rotation());
+  const math::vec3 left = ROA_detail::vec3_init(get_world_left());
+  
+  return ROA_detail::vec3_to_roa(
+    math::quat_rotate_point(rot, left)
+  );
 }
 
 

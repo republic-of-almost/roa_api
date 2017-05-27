@@ -24,7 +24,8 @@ protected:
                         Object(const Object &obj);
   Object&               operator=(const Object &obj);
 
-  void                  set_instance_id(const uint32_t id);
+  void                  set_instance_id(uint32_t id);
+  void                  set_ownership(bool ownership);
 
 
 public:

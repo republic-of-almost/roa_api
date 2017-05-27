@@ -16,7 +16,7 @@ private:
 
   friend class Object;
 
-  explicit        Entity(Object object);
+  explicit        Entity(uint32_t instance);
 
 
 public:
@@ -32,7 +32,8 @@ public:
   void            set_name(const char *new_name);
   
   void            set_parent(Entity entity);
-  void            set_parent(nullptr_t entity);
+//  void            set_parent(nullptr_t entity);
+  Entity          get_parent() const;
   
   size_t          child_count() const;
   Entity          get_child(const size_t child);

@@ -4,14 +4,29 @@
 
 namespace ROA {
 namespace KB {
+enum ENUM {
 
 
+  W,
+  A,
+  S,
+  D,
+
+
+};
 } // ns
 
 
 namespace MS {
+enum ENUM {
 
+  LEFT,
+  MIDDLE,
+  RIGHT,
+  EXTRA_ONE,
+  EXTRA_TWO,
 
+};
 } // ns
 } // ns
 

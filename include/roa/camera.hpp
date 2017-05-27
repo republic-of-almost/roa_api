@@ -16,7 +16,7 @@ private:
 
   friend class Entity;
 
-  explicit      Camera(Object obj);
+  explicit      Camera(uint32_t obj);
 
 public:
 
@@ -30,7 +30,7 @@ public:
   void          set_width(float width);
   float         get_width() const;
   
-  void          get_height(float height);
+  void          set_height(float height);
   float         get_height() const;
   
   void          set_fov(float fov);
@@ -45,8 +45,11 @@ public:
   void          set_clear_color(Color color);
   Color         get_clear_color() const;
   
-  void          clear_color_buffer(bool set);
-  void          clear_depth_buffer(bool set);
+  void          set_clear_color_buffer(bool set);
+  bool          get_clear_color_buffer() const;
+  
+  void          set_clear_depth_buffer(bool set);
+  bool          get_clear_depth_buffer() const;
   
   // ---------------------------------------------------------- [ Inherited ] --
   

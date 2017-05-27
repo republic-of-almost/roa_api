@@ -14,13 +14,16 @@ class Mouse : public Object
 {
 public:
 
-  explicit      Mouse(const uint32_t which);
+  explicit      Mouse(const uint32_t which = 0);
   
   // ----------------------------------------------------------- [ Settings ] --
 
   Point         get_position() const;
   Point         get_delta() const;
   uint32_t      get_which() const;
+  
+  bool          get_capture() const;
+  void          set_capture(bool set);
   
   // ---------------------------------------------------------- [ Inherited ] --
   

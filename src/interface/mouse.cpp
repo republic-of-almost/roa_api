@@ -118,6 +118,34 @@ Mouse::get_which() const
 }
 
 
+bool
+Mouse::get_capture() const
+{
+  const Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Mouse data{};
+  Nil::Data::get(node, data);
+  
+  return data.capture;
+}
+
+
+void
+Mouse::set_capture(bool set)
+{
+  Nil::Node node(get_instance());
+  LIB_ASSERT(node.is_valid());
+  
+  Nil::Data::Mouse data{};
+  Nil::Data::get(node, data);
+  
+  data.capture = set;
+
+  Nil::Data::set(node, data);
+}
+
+
 // ------------------------------------------------------------ [ Inherited ] --
   
   

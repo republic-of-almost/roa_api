@@ -14,7 +14,7 @@ class Keyboard : public Object
 {
 public:
 
-  explicit              Keyboard(const uint32_t which);
+  explicit              Keyboard(const uint32_t which = 0);
   
   
   // ----------------------------------------------------------- [ Settings ] --

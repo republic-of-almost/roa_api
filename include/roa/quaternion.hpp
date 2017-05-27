@@ -2,6 +2,9 @@
 #define QUATERNION_INCLUDED_AF22D8AC_6EAD_43DB_B588_903FB0720342
 
 
+#include <roa/foundation/fwd.hpp>
+
+
 namespace ROA {
 
 
@@ -15,6 +18,8 @@ public:
   float     y() const;
   float     z() const;
   float     w() const;
+  
+  static Quaternion from_axis_angle(Vector3 axis, float angle);
   
 private:
 

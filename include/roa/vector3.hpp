@@ -19,6 +19,11 @@ public:
   void          set_y(float y);
   void          set_z(float z);
   
+  Vector3       add(Vector3 other) const;
+  Vector3       normalize() const;
+  Vector3       scale(float scale) const;
+  float         length() const;
+  
 private:
 
   float         m_data[3];

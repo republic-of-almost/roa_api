@@ -5,6 +5,7 @@
 #include <nil/data/keyboard.hpp>
 #include <utilities/logging.hpp>
 #include <utilities/assert.hpp>
+#include "helpers/key_convert.hpp"
 
 
 namespace {
@@ -80,10 +81,12 @@ Keyboard::is_key_down(uint32_t key_id) const
   Nil::Data::Keyboard data{};
   Nil::Data::get(node, data);
   
+  const uint32_t key_code = ROA_detail::roa_key_to_id(key_id);
+  
   const uint32_t *key_states = (uint32_t*)data.key_state;
   
-  return (key_states[key_id] == Nil::Data::KeyState::DOWN) ||
-         (key_states[key_id] == Nil::Data::KeyState::DOWN_ON_FRAME);
+  return (key_states[key_code] == Nil::Data::KeyState::DOWN) ||
+         (key_states[key_code] == Nil::Data::KeyState::DOWN_ON_FRAME);
 }
 
 
@@ -96,9 +99,11 @@ Keyboard::is_key_down_on_frame(uint32_t key_id) const
   Nil::Data::Keyboard data{};
   Nil::Data::get(node, data);
   
+  const uint32_t key_code = ROA_detail::roa_key_to_id(key_id);
+  
   const uint32_t *key_states = (uint32_t*)data.key_state;
   
-  return key_states[key_id] == Nil::Data::KeyState::DOWN_ON_FRAME;
+  return key_states[key_code] == Nil::Data::KeyState::DOWN_ON_FRAME;
 }
 
   
@@ -113,8 +118,10 @@ Keyboard::is_key_up(uint32_t key_id) const
   
   const uint32_t *key_states = (uint32_t*)data.key_state;
   
-  return (key_states[key_id] == Nil::Data::KeyState::UP) ||
-         (key_states[key_id] == Nil::Data::KeyState::UP_ON_FRAME);
+  const uint32_t key_code = ROA_detail::roa_key_to_id(key_id);
+  
+  return (key_states[key_code] == Nil::Data::KeyState::UP) ||
+         (key_states[key_code] == Nil::Data::KeyState::UP_ON_FRAME);
 }
 
 
@@ -129,7 +136,9 @@ Keyboard::is_key_up_on_frame(uint32_t key_id) const
   
   const uint32_t *key_states = (uint32_t*)data.key_state;
   
-  return key_states[key_id] == Nil::Data::KeyState::UP_ON_FRAME;
+  const uint32_t key_code = ROA_detail::roa_key_to_id(key_id);
+  
+  return key_states[key_code] == Nil::Data::KeyState::UP_ON_FRAME;
 }
  
   
