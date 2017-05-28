@@ -105,7 +105,7 @@ Entity::get_child(const size_t child)
   const Nil::Node node(get_instance());
   const Nil::Node child_node = node.get_child(child);
   
-  return Entity(get_instance());
+  return Entity(child_node.get_id());
 }
 
 

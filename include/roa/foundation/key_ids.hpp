@@ -11,7 +11,10 @@ enum ENUM {
   A,
   S,
   D,
-
+  
+  // Other Keys
+  
+  F2,
 
 };
 } // ns

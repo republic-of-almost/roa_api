@@ -16,6 +16,8 @@ roa_key_to_id(uint32_t roa_key)
     case(ROA::KB::D): return Nil::Data::KeyCode::D;
     case(ROA::KB::S): return Nil::Data::KeyCode::S;
     case(ROA::KB::W): return Nil::Data::KeyCode::W;
+    
+    case(ROA::KB::F2): return Nil::Data::KeyCode::F2;
   }
   
   return 0;
