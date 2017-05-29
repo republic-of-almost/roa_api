@@ -22,7 +22,7 @@ namespace ROA {
 Camera::Camera(uint32_t obj)
 : Object(obj)
 {
-  
+
 }
 
 
@@ -43,14 +43,14 @@ Camera::set_priority(const uint32_t id)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.priority = id;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -61,7 +61,7 @@ Camera::get_priority() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -69,9 +69,9 @@ Camera::get_priority() const
 
     return data.priority;
   }
-  
+
   LIB_ASSERT(false); // no data
-  
+
   return 0;
 }
 
@@ -81,14 +81,14 @@ Camera::set_width(float width)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.width = width;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -99,7 +99,7 @@ Camera::get_width() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -107,9 +107,9 @@ Camera::get_width() const
 
     return data.width;
   }
-  
+
   LIB_ASSERT(false); // no data
-  
+
   return 0;
 }
 
@@ -119,14 +119,14 @@ Camera::set_height(float height)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.height = height;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -137,7 +137,7 @@ Camera::get_height() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -145,9 +145,9 @@ Camera::get_height() const
 
     return data.height;
   }
-  
+
   LIB_ASSERT(false); // no data
-  
+
   return 0;
 }
 
@@ -157,14 +157,14 @@ Camera::set_fov(float fov)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.fov = fov;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -175,7 +175,7 @@ Camera::get_fov() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -183,9 +183,9 @@ Camera::get_fov() const
 
     return data.fov;
   }
-  
+
   LIB_ASSERT(false); // no data
-  
+
   return 0;
 }
 
@@ -195,14 +195,14 @@ Camera::set_near_plane(float plane)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.near_plane = plane;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -213,7 +213,7 @@ Camera::get_near_plane() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -221,9 +221,9 @@ Camera::get_near_plane() const
 
     return data.near_plane;
   }
-  
+
   LIB_ASSERT(false); // no data
-  
+
   return 0;
 }
 
@@ -233,14 +233,14 @@ Camera::set_far_plane(float plane)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.far_plane = plane;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -251,7 +251,7 @@ Camera::get_far_plane() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -259,9 +259,9 @@ Camera::get_far_plane() const
 
     return data.far_plane;
   }
-  
+
   LIB_ASSERT(false); // no data
-  
+
   return 0;
 }
 
@@ -275,6 +275,8 @@ Camera::set_clear_color(Color color)
 Color
 Camera::get_clear_color() const
 {
+  LIB_ASSERT(false); // Not impl
+  return Color(1,1,1,1);
 }
 
 
@@ -283,7 +285,7 @@ Camera::get_clear_color_buffer() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -291,7 +293,7 @@ Camera::get_clear_color_buffer() const
 
     return data.clear_color_buffer;
   }
-  
+
   return false;
 }
 
@@ -301,14 +303,14 @@ Camera::set_clear_color_buffer(bool set)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.clear_color_buffer = set;
-    
+
     Nil::Data::set(node, data);
   }
 }
@@ -319,7 +321,7 @@ Camera::get_clear_depth_buffer() const
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
@@ -327,7 +329,7 @@ Camera::get_clear_depth_buffer() const
 
     return data.clear_depth_buffer;
   }
-  
+
   return false;
 }
 
@@ -337,14 +339,14 @@ Camera::set_clear_depth_buffer(bool set)
 {
   Nil::Node node(get_instance());
   LIB_ASSERT(node.is_valid());
-  
+
   if(Nil::Data::has_camera(node))
   {
     Nil::Data::Camera data{};
     Nil::Data::get(node, data);
 
     data.clear_depth_buffer = set;
-    
+
     Nil::Data::set(node, data);
   }
 }

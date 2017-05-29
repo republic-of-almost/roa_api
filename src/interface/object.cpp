@@ -1,6 +1,6 @@
 #include <roa/object.hpp>
 #include <roa/entity.hpp>
-#include <data/data.hpp>
+#include "../data/data.hpp"
 #include <roa/foundation/type_ids.hpp>
 #include <nil/node.hpp>
 
@@ -38,9 +38,9 @@ Object::Object()
   Nil::Node node;
   node.set_name(object_name);
   node.set_parent(ROA_detail::get_entity_node());
-  
+
   m_owning = true;
-  
+
   set_instance_id(node.get_id());
 }
 
@@ -57,7 +57,7 @@ Object::operator=(const Object &obj)
 {
   m_instance_id = obj.m_instance_id;
   m_owning = false;
-  
+
   return *this;
 }
 
@@ -107,7 +107,7 @@ Object::is_valid() const
   {
     return Nil::Node(m_instance_id).is_valid();
   }
-  
+
   return false;
 }
 

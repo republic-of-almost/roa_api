@@ -1,6 +1,6 @@
 #include <roa/application.hpp>
 #include <roa/foundation/type_ids.hpp>
-#include <data/data.hpp>
+#include "../data/data.hpp"
 #include <nil/node.hpp>
 #include <nil/data/window.hpp>
 #include <utilities/logging.hpp>
@@ -35,38 +35,38 @@ Application::Application()
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   /*
     If not setup else log an error as we don't support two apps
   */
   if(ctx_node.is_valid() && strcmp(ctx_node.get_name(), app_node_name) != 0)
   {
     ctx_node.set_name(app_node_name);
-    
+
     Nil::Data::Window win_data{};
     Nil::Data::set(ctx_node, win_data);
-    
+
     // Setup some other nodes.
     Nil::Node input_node;
     input_node.set_name(app_input_node_name);
     input_node.set_parent(ctx_node);
-    
+
     ROA_detail::get_mice_node().set_parent(input_node);
     ROA_detail::get_mice_node().set_name(app_mice_node_name);
-    
+
     ROA_detail::get_keyboards_node().set_parent(input_node);
     ROA_detail::get_keyboards_node().set_name(app_kb_node_name);
-    
+
     ROA_detail::get_gamepads_node().set_parent(input_node);
     ROA_detail::get_gamepads_node().set_name(app_gp_node_name);
-    
+
     ROA_detail::get_entity_node().set_name(app_ents_node_name);
   }
   else
   {
     LOG_ERROR(app_msg_no_duplicate);
   }
-  
+
   set_instance_id(ctx_node.get_id());
 }
 
@@ -91,21 +91,21 @@ Application::get_title() const
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-    
+
     static char title[32];
     const size_t data_size = sizeof(Nil::Data::Window::title);
     const size_t title_size = sizeof(title);
-    
-    memcpy(title, win_data.title, math::min(title_size, data_size));
-    
+
+    memcpy(title, win_data.title, math::min((uint64_t)title_size, (uint64_t)data_size));
+
     return title;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data);
   return "";
 }
@@ -116,22 +116,22 @@ Application::set_title(const char *title)
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-    
+
     const size_t title_size = strlen(title) * sizeof(title);
     const size_t data_size = sizeof(Nil::Data::Window::title);
-    
-    memcpy(win_data.title, title, math::min(title_size, data_size));
-    
+
+    memcpy(win_data.title, title, math::min((uint64_t)title_size, (uint64_t)data_size));
+
     Nil::Data::set(ctx_node, win_data);
-    
+
     return;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
 }
 
@@ -141,17 +141,17 @@ Application::get_width() const
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-  
+
     return win_data.width;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
-  
+
   return 0;
 }
 
@@ -161,19 +161,19 @@ Application::set_width(const uint32_t width)
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-  
+
     win_data.width = width;
-    
+
     Nil::Data::set(ctx_node, win_data);
-    
+
     return;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
 }
 
@@ -183,17 +183,17 @@ Application::get_height() const
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-    
+
     return win_data.height;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
-  
+
   return 0;
 }
 
@@ -203,19 +203,19 @@ Application::set_height(const uint32_t height)
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-  
+
     win_data.height = height;
-    
+
     Nil::Data::set(ctx_node, win_data);
-    
+
     return;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
 }
 
@@ -225,17 +225,17 @@ Application::is_fullscreen() const
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-  
+
     return win_data.fullscreen;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
-  
+
   return false;
 }
 
@@ -245,26 +245,26 @@ set_fullscreen(const bool set)
 {
   Nil::Node ctx_node = ROA_detail::get_context_node();
   LIB_ASSERT(ctx_node.is_valid());
-  
+
   if(Nil::Data::has_window(ctx_node))
   {
     Nil::Data::Window win_data{};
     Nil::Data::get(ctx_node, win_data);
-  
+
     win_data.fullscreen = set;
-    
+
     Nil::Data::set(ctx_node, win_data);
-    
+
     return;
   }
-  
+
   LOG_FATAL(app_msg_no_win_data)
 }
 
 
 // ------------------------------------------------------------ [ Inherited ] --
-  
-  
+
+
 uint32_t
 Application::get_type_id() const
 {
