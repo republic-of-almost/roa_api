@@ -16,7 +16,9 @@ public:
   explicit      Application();
                 ~Application();
   
+  
   // ----------------------------------------------------------- [ Settings ] --
+  
   
   const char*   get_title() const;
   void          set_title(const char *title);
@@ -30,7 +32,9 @@ public:
   bool          is_fullscreen() const;
   void          set_fullscreen(const bool set);
   
+  
   // ---------------------------------------------------------- [ Inherited ] --
+  
   
   uint32_t      get_type_id() const override;
   const char*   get_type_name() const override;
