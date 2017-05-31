@@ -20,6 +20,9 @@ public:
   
   
   void            set_triangles(const float *tris, size_t tri_count);
+  float*          get_triangles() const;
+  size_t          get_triangle_count() const;
+  
   bool            ray_test(Ray ray, Vector3 &out_position);
   
 private:

@@ -12,6 +12,9 @@ namespace Debug {
 void
 draw_line(Vector3 start, Vector3 end, Color color);
 
+void
+draw_line(Nav_mesh mesh, Color color);
+
 
 } // ns
 } // ns

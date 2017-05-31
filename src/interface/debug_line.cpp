@@ -1,5 +1,6 @@
 #include <roa/debug_line.hpp>
 #include <roa/vector3.hpp>
+#include <roa/nav_mesh.hpp>
 #include <roa/color.hpp>
 #include "../data/data.hpp"
 #include <nil/node.hpp>
@@ -63,6 +64,27 @@ draw_line(Vector3 start, Vector3 end, Color color)
   dev.aux_01 = (uintptr_t)line_data.data();
   dev.aux_02 = (uintptr_t)line_data.size();
   Nil::Data::set(node, dev);
+}
+
+
+void
+draw_line(Nav_mesh mesh, Color color)
+{
+  const float *tris = mesh.get_triangles();
+  const size_t count = mesh.get_triangle_count();
+  
+  for(size_t i = 0; i < count; ++i)
+  {
+    const size_t index = i * 9;
+    
+    Vector3 v0(tris[index + 0], tris[index + 1], tris[index + 2]);
+    Vector3 v1(tris[index + 3], tris[index + 4], tris[index + 5]);
+    Vector3 v2(tris[index + 6], tris[index + 7], tris[index + 8]);
+    
+    draw_line(v0, v1, color);
+    draw_line(v1, v2, color);
+    draw_line(v2, v0, color);
+  }
 }
 
 

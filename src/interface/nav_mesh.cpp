@@ -45,6 +45,24 @@ Nav_mesh::set_triangles(const float *tris, size_t tri_count)
 }
 
 
+float*
+Nav_mesh::get_triangles() const
+{
+  LIB_ASSERT(m_impl);
+  
+  return m_impl->tris;
+}
+
+
+size_t
+Nav_mesh::get_triangle_count() const
+{
+  LIB_ASSERT(m_impl);
+  
+  return m_impl->tri_count;
+}
+
+
 bool
 Nav_mesh::ray_test(Ray ray, Vector3 &out_position)
 {
@@ -57,7 +75,9 @@ Nav_mesh::ray_test(Ray ray, Vector3 &out_position)
   float out_distance = 0.f;
   if(math::ray_test_triangles(r, m_impl->tris, m_impl->tri_count), &out_distance)
   {
-   
+    const Vector3 scale = ray.get_direction().scale(out_distance);
+    out_position = ray.get_origin().add(scale);
+    
     return true;
   }
 
