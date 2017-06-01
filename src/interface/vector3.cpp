@@ -84,6 +84,18 @@ Vector3::add(Vector3 other) const
 
 
 Vector3
+Vector3::subtract(Vector3 other) const
+{
+  return from_math(
+    math::vec3_subtract(
+      to_math(*this),
+      to_math(other)
+    )
+  );
+}
+
+
+Vector3
 Vector3::normalize() const
 {
   return from_math(
@@ -110,6 +122,16 @@ float
 Vector3::length() const
 {
   return math::vec3_length(to_math(*this));
+}
+
+
+float
+Vector3::dot(Vector3 other) const
+{
+  return math::vec3_dot(
+    to_math(*this),
+    to_math(other)
+  );
 }
 
 

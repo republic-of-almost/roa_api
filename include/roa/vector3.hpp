@@ -20,9 +20,11 @@ public:
   void          set_z(float z);
   
   Vector3       add(Vector3 other) const;
+  Vector3       subtract(Vector3 other) const;
   Vector3       normalize() const;
   Vector3       scale(float scale) const;
   float         length() const;
+  float         dot(Vector3 other) const;
   
 private:
 

@@ -8,6 +8,7 @@ namespace ROA {
 class Application;
 class Camera;
 class Color;
+struct Edge;
 class Entity;
 class Material;
 class Mesh;

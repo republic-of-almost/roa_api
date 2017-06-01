@@ -24,6 +24,7 @@ public:
   size_t          get_triangle_count() const;
   
   bool            ray_test(Ray ray, Vector3 &out_position);
+  bool            closest_edge(Vector3 pos, Edge &out_edge);
   
 private:
 

@@ -1,4 +1,7 @@
 #include <roa/nav_mesh.hpp>
+#include <roa/edge.hpp>
+#include <roa/debug_line.hpp>
+#include <roa/color.hpp>
 #include <roa/ray.hpp>
 #include <utilities/assert.hpp>
 #include <math/geometry/ray.hpp>
@@ -73,7 +76,7 @@ Nav_mesh::ray_test(Ray ray, Vector3 &out_position)
   const math::ray r = math::ray_init(origin, end);
   
   float out_distance = 0.f;
-  if(math::ray_test_triangles(r, m_impl->tris, m_impl->tri_count), &out_distance)
+  if(math::ray_test_triangles(r, m_impl->tris, m_impl->tri_count, &out_distance))
   {
     const Vector3 scale = ray.get_direction().scale(out_distance);
     out_position = ray.get_origin().add(scale);
@@ -82,6 +85,29 @@ Nav_mesh::ray_test(Ray ray, Vector3 &out_position)
   }
 
   return false;
+}
+
+
+bool
+Nav_mesh::closest_edge(ROA::Vector3 pos, Edge &out_edge)
+{
+  math::vec3 seg[2];
+
+  const bool match = math::ray_test_closest_edge(m_impl->tris, m_impl->tri_count, math::vec3_init(pos.x(), pos.y(), pos.z()), seg[0], seg[1]);
+  
+  ROA::Debug::draw_line(
+    Vector3(math::get_x(seg[0]), math::get_y(seg[0]), math::get_z(seg[0])),
+    Vector3(math::get_x(seg[1]), math::get_y(seg[1]), math::get_z(seg[1])),
+    Color(1,0,0,1)
+  );
+
+  if(match)
+  {
+    out_edge.start_point = Vector3(math::get_x(seg[0]), math::get_y(seg[0]), math::get_z(seg[0]));
+    out_edge.end_point   = Vector3(math::get_x(seg[1]), math::get_y(seg[1]), math::get_z(seg[1]));
+  }
+  
+  return match;
 }
 
 
