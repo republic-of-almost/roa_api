@@ -5,6 +5,8 @@
 namespace ROA {
 
 
+class AudioSample;
+class Audio;
 class Application;
 class Camera;
 class Color;

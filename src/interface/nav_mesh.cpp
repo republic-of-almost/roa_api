@@ -93,12 +93,16 @@ Nav_mesh::closest_edge(ROA::Vector3 pos, Edge &out_edge)
 {
   math::vec3 seg[2];
 
-  const bool match = math::ray_test_closest_edge(m_impl->tris, m_impl->tri_count, math::vec3_init(pos.x(), pos.y(), pos.z()), seg[0], seg[1]);
-  
-  ROA::Debug::draw_line(
-    Vector3(math::get_x(seg[0]), math::get_y(seg[0]), math::get_z(seg[0])),
-    Vector3(math::get_x(seg[1]), math::get_y(seg[1]), math::get_z(seg[1])),
-    Color(1,0,0,1)
+  const bool match = math::ray_test_closest_edge(
+    m_impl->tris,
+    m_impl->tri_count,
+    math::vec3_init(
+      pos.x(),
+      pos.y(),
+      pos.z()
+    ),
+    seg[0],
+    seg[1]
   );
 
   if(match)

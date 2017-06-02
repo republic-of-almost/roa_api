@@ -1,16 +1,14 @@
-#ifndef MOUSE_INCLUDED_E5AE2FA2_4159_4FB1_BA07_D6503AD7ED89
-#define MOUSE_INCLUDED_E5AE2FA2_4159_4FB1_BA07_D6503AD7ED89
+#ifndef AUDIO_PLAYER_INCLUDED_E10E2D47_44B1_4B60_8003_D105AFA28195
+#define AUDIO_PLAYER_INCLUDED_E10E2D47_44B1_4B60_8003_D105AFA28195
 
 
 #include <roa/object.hpp>
-#include <roa/foundation/fwd.hpp>
-#include <roa/foundation/types.hpp>
 
 
 namespace ROA {
 
 
-class Mouse : public Object
+class Audio_player : public Object
 {
 public:
 
@@ -18,18 +16,15 @@ public:
   // ----------------------------------------------------------- [ Lifetime ] --
 
 
-  explicit      Mouse(const uint32_t which = 0);
-
+  explicit      Audio_player();
+  
   
   // ----------------------------------------------------------- [ Settings ] --
-
-
-  Point         get_position() const;
-  Point         get_delta() const;
-  uint32_t      get_which() const;
   
-  bool          get_capture() const;
-  void          set_capture(bool set);
+  void          play();
+  void          set_volume(float vol);
+  float         get_volume() const;
+  void          set_sample(Audio_sample sample);
   
   
   // ---------------------------------------------------------- [ Inherited ] --
