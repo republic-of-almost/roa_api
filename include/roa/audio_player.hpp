@@ -3,6 +3,7 @@
 
 
 #include <roa/object.hpp>
+#include <roa/foundation/fwd.hpp>
 
 
 namespace ROA {
@@ -10,6 +11,12 @@ namespace ROA {
 
 class Audio_player : public Object
 {
+private:
+
+  friend class Entity;
+
+  explicit      Audio_player(uint32_t instance);
+
 public:
 
 
@@ -22,9 +29,14 @@ public:
   // ----------------------------------------------------------- [ Settings ] --
   
   void          play();
+  
+  bool          is_playing() const;
+  
   void          set_volume(float vol);
   float         get_volume() const;
-  void          set_sample(Audio_sample sample);
+  
+  void          set_sample(Audio_sample &sample);
+  Audio_sample  get_sample() const;
   
   
   // ---------------------------------------------------------- [ Inherited ] --

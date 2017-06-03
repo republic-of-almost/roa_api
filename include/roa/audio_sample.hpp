@@ -17,7 +17,8 @@ public:
 
 
   explicit          Audio_sample();
-  explicit          Audio_sample(const char *filename);
+  explicit          Audio_sample(const char *name);
+  explicit          Audio_sample(const char *name, const char *filename);
   
   
   // ---------------------------------------------------------- [ Inherited ] --

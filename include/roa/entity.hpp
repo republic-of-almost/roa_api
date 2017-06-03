@@ -43,13 +43,16 @@ public:
   
 
   Transform       get_transform() const;
-  void            set_transform(const Transform other);
+  void            set_transform(const Transform transform);
   
   Camera          get_camera() const;
-  void            set_camera(const Camera other);
+  void            set_camera(const Camera cam);
   
   Material        get_material() const;
   void            set_material(const Material mat);
+  
+  Audio_player    get_audio_player() const;
+  void            set_audio_player(const Audio_player player);
   
   
   // ---------------------------------------------------------- [ Inherited ] --

@@ -3,6 +3,7 @@
 #include <roa/transform.hpp>
 #include <roa/camera.hpp>
 #include <roa/material.hpp>
+#include <roa/audio_player.hpp>
 #include <nil/node.hpp>
 #include <nil/data/data.hpp>
 #include <data/data.hpp>
@@ -162,6 +163,25 @@ Entity::set_material(const ROA::Material other)
 {
   Nil::Node other_node(other.get_instance());
   Nil::Data::Material other_data{};
+  Nil::Data::get(other_node, other_data);
+  
+  Nil::Node node(get_instance());
+  Nil::Data::set(node, other_data);
+}
+
+
+Audio_player
+Entity::get_audio_player() const
+{
+  return Audio_player(this->get_instance());
+}
+
+
+void
+Entity::set_audio_player(const Audio_player other)
+{
+  Nil::Node other_node(other.get_instance());
+  Nil::Data::Audio other_data{};
   Nil::Data::get(other_node, other_data);
   
   Nil::Node node(get_instance());

@@ -6,12 +6,18 @@
 namespace ROA_detail {
 
 
+// -------------------------------------------------------------- [ Context ] --
+
+
 Nil::Node
 get_context_node()
 {
   static Nil::Node node;
   return node;
 }
+
+
+// ---------------------------------------------------------------- [ Input ] --
 
 
 Nil::Node
@@ -38,12 +44,29 @@ get_gamepads_node()
 }
 
 
+// ---------------------------------------------------------------- [ Audio ] --
+
+
+Nil::Node
+get_audio_sample_node()
+{
+  static Nil::Node node;
+  return node;
+}
+
+
+// --------------------------------------------------------------- [ Entity ] --
+
+
 Nil::Node
 get_entity_node()
 {
   static Nil::Node node;
   return node;
 }
+
+
+// ---------------------------------------------------------------- [ Other ] --
 
 
 Nil::Node
