@@ -4,6 +4,7 @@
 #include <nil/data/data.hpp>
 #include <nil/node.hpp>
 #include <utilities/logging.hpp>
+#include <utilities/assert.hpp>
 #include <stdlib.h>
 #include <string.h>
 
@@ -34,7 +35,24 @@ Audio_sample::Audio_sample()
 Audio_sample::Audio_sample(const char *name)
 : Object(nullptr)
 {
-
+  // Search for child with name that matches.
+  // This is really crappy but unsure whats the best from API point
+  Nil::Node audio_node = ROA_detail::get_audio_sample_node();
+  
+  const size_t children = audio_node.get_child_count();
+  
+  for(size_t i = 0; i < children; ++i)
+  {
+    Nil::Node child_node = audio_node.get_child(i);
+    
+    if(strcmp(name, child_node.get_name()))
+    {
+      LIB_ASSERT(Nil::Data::has_audio_resource(child_node));
+    
+      set_instance_id(child_node.get_id());
+      break;
+    }
+  }
 }
 
 
@@ -43,7 +61,7 @@ Audio_sample::Audio_sample(const char *name, const char *filename)
 {
   Nil::Node audio_node = ROA_detail::get_audio_sample_node();
 
-  if(strcmp(audio_node.get_name(), audio_sample_node_name) != 0)
+  if(strcmp(audio_node.get_name(), audio_node_name) != 0)
   {
     audio_node.set_name(audio_node_name);
   }
@@ -75,8 +93,10 @@ Audio_sample::Audio_sample(const char *name, const char *filename)
   LOG_TODO("Leak");
   
   data.filename = (char*)malloc(sizeof_filename);
+  memset(data.filename, 0, sizeof(sizeof_filename));
+  
   data.id = new_audio_sample.get_id();
-  memcpy(data.filename, filename, sizeof_filename);
+  strcat(data.filename, filename);
   
   Nil::Data::set(new_audio_sample, data);
 }
