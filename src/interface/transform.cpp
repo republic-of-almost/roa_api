@@ -4,8 +4,8 @@
 #include <roa/foundation/type_ids.hpp>
 #include <nil/node.hpp>
 #include <nil/data/transform.hpp>
-#include <utilities/logging.hpp>
-#include <utilities/assert.hpp>
+#include <lib/logging.hpp>
+#include <lib/assert.hpp>
 #include "helpers/math_extensions.hpp"
 #include <math/quat/quat.hpp>
 #include <math/vec/vec3.hpp>

@@ -28,8 +28,9 @@ public:
   
   // ----------------------------------------------------------- [ Settings ] --
   
-  void          play();
   
+  void          play();
+
   bool          is_playing() const;
   
   void          set_volume(float vol);

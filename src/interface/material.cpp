@@ -3,8 +3,8 @@
 #include <roa/foundation/type_ids.hpp>
 #include <nil/node.hpp>
 #include <nil/data/material.hpp>
-#include <utilities/logging.hpp>
-#include <utilities/assert.hpp>
+#include <lib/logging.hpp>
+#include <lib/assert.hpp>
 
 
 namespace {

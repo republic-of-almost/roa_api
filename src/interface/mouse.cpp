@@ -4,8 +4,8 @@
 #include "../data/data.hpp"
 #include <nil/node.hpp>
 #include <nil/data/mouse.hpp>
-#include <utilities/assert.hpp>
-#include <utilities/logging.hpp>
+#include <lib/assert.hpp>
+#include <lib/logging.hpp>
 #include <string.h>
 
 

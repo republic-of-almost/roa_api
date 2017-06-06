@@ -1,5 +1,5 @@
 #include <roa/color.hpp>
-#include <utilities/color.hpp>
+#include <lib/color.hpp>
 
 
 namespace ROA {

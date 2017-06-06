@@ -4,7 +4,7 @@
 #include <roa/color.hpp>
 #include <nil/node.hpp>
 #include <nil/data/camera.hpp>
-#include <utilities/assert.hpp>
+#include <lib/assert.hpp>
 
 
 namespace {

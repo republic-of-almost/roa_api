@@ -12,8 +12,6 @@ namespace ROA {
 
 class Transform : public Object
 {
-private:
-
   friend class    Entity;
 
   explicit        Transform(uint32_t instance_id);

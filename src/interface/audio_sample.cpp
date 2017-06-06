@@ -1,10 +1,10 @@
 #include <roa/audio_sample.hpp>
 #include <roa/foundation/type_ids.hpp>
-#include <data/data.hpp>
+#include "../data/data.hpp"
 #include <nil/data/data.hpp>
 #include <nil/node.hpp>
-#include <utilities/logging.hpp>
-#include <utilities/assert.hpp>
+#include <lib/logging.hpp>
+#include <lib/assert.hpp>
 #include <stdlib.h>
 #include <string.h>
 
@@ -13,7 +13,6 @@ namespace {
 
 
 constexpr char audio_sample_name[]      = "Audio Sample";
-constexpr char audio_sample_node_name[] = "roa-samp";
 constexpr char audio_node_name[]        = "roa-audio";
 
 
@@ -45,7 +44,7 @@ Audio_sample::Audio_sample(const char *name)
   {
     Nil::Node child_node = audio_node.get_child(i);
     
-    if(strcmp(name, child_node.get_name()))
+    if(strcmp(name, child_node.get_name()) == 0)
     {
       LIB_ASSERT(Nil::Data::has_audio_resource(child_node));
     
@@ -82,7 +81,7 @@ Audio_sample::Audio_sample(const char *name, const char *filename)
   }
   
   Nil::Node new_audio_sample;
-  new_audio_sample.set_name(audio_sample_node_name);
+  new_audio_sample.set_name(name);
   new_audio_sample.set_parent(audio_node);
   set_instance_id(new_audio_sample.get_id());
   

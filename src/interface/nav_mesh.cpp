@@ -3,7 +3,7 @@
 #include <roa/debug_line.hpp>
 #include <roa/color.hpp>
 #include <roa/ray.hpp>
-#include <utilities/assert.hpp>
+#include <lib/assert.hpp>
 #include <math/geometry/ray.hpp>
 #include "helpers/math_extensions.hpp"
 

@@ -4,7 +4,7 @@
 #include <nil/node.hpp>
 #include <nil/data/audio.hpp>
 #include <nil/data/audio_resource.hpp>
-#include <utilities/assert.hpp>
+#include <lib/assert.hpp>
 #include <math/math.hpp>
 
 

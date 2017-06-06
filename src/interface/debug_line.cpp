@@ -5,7 +5,7 @@
 #include "../data/data.hpp"
 #include <nil/node.hpp>
 #include <nil/data/developer.hpp>
-#include <utilities/array.hpp>
+#include <lib/array.hpp>
 
 
 namespace {

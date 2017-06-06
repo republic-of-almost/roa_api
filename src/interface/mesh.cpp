@@ -1,6 +1,6 @@
 //#include <roa/mesh.hpp>
 //#include <string.h>
-//#include <utilities/assert.hpp>
+//#include <lib/assert.hpp>
 //
 //
 //namespace ROA {

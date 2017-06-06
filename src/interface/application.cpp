@@ -3,8 +3,8 @@
 #include "../data/data.hpp"
 #include <nil/node.hpp>
 #include <nil/data/window.hpp>
-#include <utilities/logging.hpp>
-#include <utilities/assert.hpp>
+#include <lib/logging.hpp>
+#include <lib/assert.hpp>
 #include <math/general/general.hpp>
 #include <string.h>
 
